@@ -1,15 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
 
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
-}
+// This application has been converted to a static HTML site (index.html) for GitHub Pages compatibility.
+// This file is kept to satisfy the build environment's entry point requirement but performs no operations.
 
-const root = ReactDOM.createRoot(rootElement);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+console.log('Static site loaded successfully.');

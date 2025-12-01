@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,6 +9,8 @@
       content="Dog’s Day Out (Seattle) offers positive-reinforcement dog training, small-group daycare, and full-service grooming. Safe, experienced staff. Schedule a visit today."
     />
     <title>Dog’s Day Out — Fear-Free Dog Daycare, Grooming & Training | Seattle</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -29,23 +31,608 @@
         }
       }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
       body { font-family: 'Inter', sans-serif; }
-      html { scroll-behavior: smooth; }
+      /* Scroll padding to account for fixed navbar */
+      html { scroll-padding-top: 80px; }
     </style>
   <script type="importmap">
 {
   "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
     "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
   }
 }
 </script>
 </head>
-  <body>
-    <div id="root"></div>
+  <body class="bg-white text-slate-600 antialiased">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+          <!-- Logo -->
+          <a href="#" class="flex-shrink-0 flex items-center gap-2 cursor-pointer no-scroll-reset">
+            <div class="bg-brand-blue p-2 rounded-lg text-white">
+              <i data-lucide="paw-print" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h1 class="text-xl font-bold text-slate-800 leading-tight">Dog's Day Out</h1>
+              <p class="text-xs text-slate-500 hidden sm:block">Seattle, WA</p>
+            </div>
+          </a>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex space-x-8 items-center">
+            <a href="#about" class="nav-link text-slate-600 hover:text-brand-blue font-medium transition-colors">About</a>
+            <a href="#services" class="nav-link text-slate-600 hover:text-brand-blue font-medium transition-colors">Services</a>
+            <a href="#why-us" class="nav-link text-slate-600 hover:text-brand-blue font-medium transition-colors">Why Us</a>
+            <a href="#gallery" class="nav-link text-slate-600 hover:text-brand-blue font-medium transition-colors">Gallery</a>
+            <a href="#contact" class="nav-link bg-brand-yellow hover:bg-amber-300 text-slate-900 px-5 py-2.5 rounded-full font-semibold transition-colors shadow-sm">Book Now</a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 p-2" aria-label="Toggle menu">
+              <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg h-screen md:h-auto top-20 left-0">
+        <div class="px-4 pt-2 pb-6 space-y-1 sm:px-3">
+          <a href="#about" class="mobile-link block px-3 py-4 rounded-md text-base font-medium text-slate-600 hover:text-brand-blue hover:bg-slate-50 border-b border-slate-100">About</a>
+          <a href="#services" class="mobile-link block px-3 py-4 rounded-md text-base font-medium text-slate-600 hover:text-brand-blue hover:bg-slate-50 border-b border-slate-100">Services</a>
+          <a href="#why-us" class="mobile-link block px-3 py-4 rounded-md text-base font-medium text-slate-600 hover:text-brand-blue hover:bg-slate-50 border-b border-slate-100">Why Us</a>
+          <a href="#gallery" class="mobile-link block px-3 py-4 rounded-md text-base font-medium text-slate-600 hover:text-brand-blue hover:bg-slate-50 border-b border-slate-100">Gallery</a>
+          <div class="pt-4">
+            <a href="#contact" class="mobile-link block w-full text-center bg-brand-yellow text-slate-900 px-5 py-3 rounded-xl font-bold">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-slate-50 pt-10 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+          <!-- Text Content -->
+          <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+            <div class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-brand-blue text-sm font-semibold mb-6">
+              <span class="flex h-2 w-2 rounded-full bg-brand-blue mr-2"></span>
+              Now accepting new clients in Seattle
+            </div>
+            <h1 class="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+              <span class="block xl:inline">Safe, Happy &</span>
+              <span class="block text-brand-blue xl:inline">Fear-Free Care</span>
+              <span class="block xl:inline">for Your Dog</span>
+            </h1>
+            <p class="mt-4 text-base text-slate-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+              Positive-reinforcement training, small-group daycare, and full-service grooming. Serving Ballard, Greenwood, and Crown Hill.
+            </p>
+            <div class="mt-8 sm:mt-12 sm:flex sm:justify-center lg:justify-start gap-4">
+              <a href="#contact" class="nav-link w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-xl text-slate-900 bg-brand-yellow hover:bg-amber-300 md:py-4 md:text-lg md:px-10 transition-transform active:scale-95 shadow-lg shadow-amber-300/30">
+                Schedule a Visit
+              </a>
+              <a href="#services" class="nav-link mt-3 sm:mt-0 w-full flex items-center justify-center px-8 py-3 border-2 border-slate-200 text-base font-bold rounded-xl text-slate-600 bg-transparent hover:border-brand-blue hover:text-brand-blue md:py-4 md:text-lg md:px-10 transition-colors">
+                View Services
+                <i data-lucide="arrow-right" class="ml-2 w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Image -->
+          <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
+            <div class="relative mx-auto w-full rounded-3xl shadow-2xl lg:max-w-md overflow-hidden transform rotate-2 hover:rotate-0 transition-transform duration-500">
+               <img class="w-full h-full object-cover" src="https://picsum.photos/id/237/800/1000" alt="Happy black dog playing" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            </div>
+             <!-- Decorative blobs -->
+             <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-blue/20 rounded-full blur-3xl -z-10"></div>
+             <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-yellow/30 rounded-full blur-3xl -z-10"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+          <div class="relative mb-12 lg:mb-0">
+             <div class="absolute top-0 left-0 -ml-4 -mt-4 w-24 h-24 bg-brand-yellow rounded-full opacity-50 blur-xl"></div>
+             <img src="https://picsum.photos/id/1025/800/600" alt="Dog trainer interacting with pug" class="relative rounded-2xl shadow-xl w-full object-cover" />
+             <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg border border-slate-100 hidden md:block">
+               <p class="font-bold text-slate-800 text-lg">5+ Years</p>
+               <p class="text-slate-500 text-sm">Serving Seattle Pets</p>
+             </div>
+          </div>
+
+          <div>
+            <h2 class="text-base text-brand-blue font-semibold tracking-wide uppercase">About Us</h2>
+            <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+              More Than Just a Daycare
+            </p>
+            <p class="mt-4 text-lg text-slate-600">
+              At Dog’s Day Out, we believe every dog deserves to feel safe, understood, and happy. Our mission is to provide fear-free care that focuses on the emotional and physical well-being of your canine companion.
+            </p>
+            <p class="mt-4 text-lg text-slate-600">
+              Located in the heart of Seattle, we limit our playgroups to ensure every dog gets personal attention from our certified staff. Whether it's grooming without stress or training without force, we are your partners in pet parenthood.
+            </p>
+
+            <div class="mt-8 space-y-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <div class="flex items-center justify-center h-10 w-10 rounded-md bg-blue-100 text-brand-blue">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-lg leading-6 font-medium text-slate-900">Fear-Free Philosophy</h3>
+                  <p class="mt-1 text-base text-slate-500">We never use force, shock, or prong collars. Only positive reinforcement.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <div class="flex items-center justify-center h-10 w-10 rounded-md bg-yellow-100 text-yellow-600">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-lg leading-6 font-medium text-slate-900">Small Group Sizes</h3>
+                  <p class="mt-1 text-base text-slate-500">Structured playgroups matched by size and temperament for safety.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                 <div class="flex-shrink-0">
+                  <div class="flex items-center justify-center h-10 w-10 rounded-md bg-red-100 text-red-500">
+                    <i data-lucide="heart" class="w-6 h-6"></i>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-lg leading-6 font-medium text-slate-900">Experienced Staff</h3>
+                  <p class="mt-1 text-base text-slate-500">Our team is trained in canine body language and first aid.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-brand-gray">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-base text-brand-blue font-semibold tracking-wide uppercase">Our Services</h2>
+          <p class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            Everything Your Dog Needs
+          </p>
+          <p class="mt-4 text-xl text-slate-500">
+            From socialization to spa days, we offer a comprehensive range of services tailored to your dog's individual needs.
+          </p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Service Card 1 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl transition-shadow duration-300 p-8 flex flex-col h-full">
+            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-brand-blue mb-6">
+              <i data-lucide="dog" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Full-Day Dog Daycare</h3>
+            <p class="text-slate-600 mb-6 flex-grow">Structured socialization and play in a safe, supervised environment.</p>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Supervised small groups</li>
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Structured play & rest cycles</li>
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Mental enrichment</li>
+            </ul>
+            <a href="#contact" class="nav-link mt-auto block text-center w-full py-2 rounded-lg border border-slate-200 text-slate-600 font-medium hover:border-brand-blue hover:text-brand-blue transition-colors">Learn More</a>
+          </div>
+
+          <!-- Service Card 2 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl transition-shadow duration-300 p-8 flex flex-col h-full">
+            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-brand-blue mb-6">
+              <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Behavior-Based Training</h3>
+            <p class="text-slate-600 mb-6 flex-grow">Positive reinforcement methods for all behavior levels.</p>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Private lessons</li>
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Reactive/fearful dog support</li>
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Certified trainers</li>
+            </ul>
+            <a href="#contact" class="nav-link mt-auto block text-center w-full py-2 rounded-lg border border-slate-200 text-slate-600 font-medium hover:border-brand-blue hover:text-brand-blue transition-colors">Learn More</a>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl transition-shadow duration-300 p-8 flex flex-col h-full">
+            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-brand-blue mb-6">
+              <i data-lucide="scissors" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Full Grooming & Spa</h3>
+            <p class="text-slate-600 mb-6 flex-grow">A relaxing spa experience for your furry friend.</p>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Baths & haircuts</li>
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Nail trims & ear cleaning</li>
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> De-shedding treatments</li>
+            </ul>
+            <a href="#contact" class="nav-link mt-auto block text-center w-full py-2 rounded-lg border border-slate-200 text-slate-600 font-medium hover:border-brand-blue hover:text-brand-blue transition-colors">Learn More</a>
+          </div>
+
+          <!-- Service Card 4 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl transition-shadow duration-300 p-8 flex flex-col h-full">
+            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-brand-blue mb-6">
+              <i data-lucide="bone" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Puppy & Teen Programs</h3>
+            <p class="text-slate-600 mb-6 flex-grow">Building confidence and social skills for young dogs.</p>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Safe socialization</li>
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Confidence building</li>
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Basic manners</li>
+            </ul>
+            <a href="#contact" class="nav-link mt-auto block text-center w-full py-2 rounded-lg border border-slate-200 text-slate-600 font-medium hover:border-brand-blue hover:text-brand-blue transition-colors">Learn More</a>
+          </div>
+
+          <!-- Service Card 5 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl transition-shadow duration-300 p-8 flex flex-col h-full">
+            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-brand-blue mb-6">
+              <i data-lucide="brain" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Enrichment Classes</h3>
+            <p class="text-slate-600 mb-6 flex-grow">Fun activities to stimulate your dog’s mind.</p>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Nose-work games</li>
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Mental stimulation</li>
+              <li class="flex items-start text-sm text-slate-500"><i data-lucide="check" class="w-5 h-5 text-brand-yellow mr-2 flex-shrink-0"></i> Agility basics</li>
+            </ul>
+            <a href="#contact" class="nav-link mt-auto block text-center w-full py-2 rounded-lg border border-slate-200 text-slate-600 font-medium hover:border-brand-blue hover:text-brand-blue transition-colors">Learn More</a>
+          </div>
+        </div>
+        
+        <div class="mt-12 text-center">
+             <p class="text-slate-500">Not sure what you need? <a href="#contact" class="nav-link text-brand-blue font-semibold hover:underline">Contact us</a> for a consultation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="py-20 bg-brand-blue relative overflow-hidden">
+      <!-- Decorative patterns -->
+      <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-brand-yellow opacity-20 rounded-full blur-3xl"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden lg:grid lg:grid-cols-2">
+          
+          <div class="px-8 py-12 lg:px-16 lg:py-20 flex flex-col justify-center">
+            <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl mb-6">
+              Why Seattle Dogs Love Us
+            </h2>
+            <p class="text-lg text-slate-600 mb-8">
+              We know trusting someone with your family member is a big deal. We’ve built our reputation on transparency, safety, and genuine love for dogs.
+            </p>
+            
+            <ul class="grid grid-cols-1 gap-4">
+              <li class="flex items-center text-slate-700 font-medium">
+                <div class="bg-brand-yellow/30 p-1.5 rounded-full mr-3 text-amber-700"><i data-lucide="star" class="w-4 h-4"></i></div>
+                Positive Reinforcement Only
+              </li>
+              <li class="flex items-center text-slate-700 font-medium">
+                <div class="bg-brand-yellow/30 p-1.5 rounded-full mr-3 text-amber-700"><i data-lucide="star" class="w-4 h-4"></i></div>
+                CPR & First Aid Certified Staff
+              </li>
+              <li class="flex items-center text-slate-700 font-medium">
+                <div class="bg-brand-yellow/30 p-1.5 rounded-full mr-3 text-amber-700"><i data-lucide="star" class="w-4 h-4"></i></div>
+                Strict Vaccination Protocols
+              </li>
+              <li class="flex items-center text-slate-700 font-medium">
+                <div class="bg-brand-yellow/30 p-1.5 rounded-full mr-3 text-amber-700"><i data-lucide="star" class="w-4 h-4"></i></div>
+                Temperature Controlled Facility
+              </li>
+              <li class="flex items-center text-slate-700 font-medium">
+                <div class="bg-brand-yellow/30 p-1.5 rounded-full mr-3 text-amber-700"><i data-lucide="star" class="w-4 h-4"></i></div>
+                Separate Areas for Tiny Dogs
+              </li>
+              <li class="flex items-center text-slate-700 font-medium">
+                <div class="bg-brand-yellow/30 p-1.5 rounded-full mr-3 text-amber-700"><i data-lucide="star" class="w-4 h-4"></i></div>
+                Daily Report Cards
+              </li>
+            </ul>
+
+            <div class="mt-10 p-4 bg-blue-50 rounded-xl border border-blue-100">
+              <p class="text-sm text-brand-blue font-semibold text-center">
+                🚫 No shock collars. No prong collars. No intimidation. Just rewards and respect.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative h-64 lg:h-auto">
+            <img class="absolute inset-0 w-full h-full object-cover" src="https://picsum.photos/id/169/800/1000" alt="Peaceful dog resting" />
+             <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black/10 lg:hidden"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            A Peek Inside
+          </h2>
+          <p class="mt-4 text-xl text-slate-500">
+            Real dogs having a real good time.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="relative group overflow-hidden rounded-xl aspect-square">
+            <img src="https://picsum.photos/id/1025/600/600" alt="Pug in a blanket" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <span class="text-white font-medium px-4 py-2 border border-white rounded-full">Dog's Day Out</span>
+            </div>
+          </div>
+          <div class="relative group overflow-hidden rounded-xl aspect-square">
+            <img src="https://picsum.photos/id/237/600/600" alt="Black dog playing" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <span class="text-white font-medium px-4 py-2 border border-white rounded-full">Dog's Day Out</span>
+            </div>
+          </div>
+          <div class="relative group overflow-hidden rounded-xl aspect-square">
+            <img src="https://picsum.photos/id/169/600/600" alt="Dog in park" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <span class="text-white font-medium px-4 py-2 border border-white rounded-full">Dog's Day Out</span>
+            </div>
+          </div>
+          <div class="relative group overflow-hidden rounded-xl aspect-square">
+            <img src="https://picsum.photos/id/1062/600/600" alt="Dog wrapped in blanket" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <span class="text-white font-medium px-4 py-2 border border-white rounded-full">Dog's Day Out</span>
+            </div>
+          </div>
+          <div class="relative group overflow-hidden rounded-xl aspect-square">
+            <img src="https://picsum.photos/id/582/600/600" alt="Wolf dog waiting" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <span class="text-white font-medium px-4 py-2 border border-white rounded-full">Dog's Day Out</span>
+            </div>
+          </div>
+          <div class="relative group overflow-hidden rounded-xl aspect-square">
+            <img src="https://picsum.photos/id/593/600/600" alt="Tiger dog portrait" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <span class="text-white font-medium px-4 py-2 border border-white rounded-full">Dog's Day Out</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-brand-gray border-t border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-center text-3xl font-extrabold text-slate-900 mb-16">
+          Community Love
+        </h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-2xl shadow-sm relative">
+            <div class="absolute -top-4 left-8 bg-brand-yellow text-amber-900 p-2 rounded-lg">
+              <i data-lucide="quote" class="w-5 h-5"></i>
+            </div>
+            <p class="text-slate-600 italic mb-6 pt-4">"Dog's Day Out has transformed my anxious rescue into a confident, happy pup. The staff truly understands dog behavior!"</p>
+            <div class="border-t border-slate-100 pt-4 flex items-center">
+              <div class="w-10 h-10 bg-slate-200 rounded-full flex-shrink-0 mr-3">
+                  <img src="https://picsum.photos/seed/1/100" class="w-full h-full rounded-full object-cover" alt="Avatar" />
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Sarah M.</h4>
+                <p class="text-slate-400 text-xs">Ballard</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-sm relative">
+            <div class="absolute -top-4 left-8 bg-brand-yellow text-amber-900 p-2 rounded-lg">
+              <i data-lucide="quote" class="w-5 h-5"></i>
+            </div>
+            <p class="text-slate-600 italic mb-6 pt-4">"The grooming team is amazing. They took such good care of my elderly golden retriever. He looks and smells great!"</p>
+            <div class="border-t border-slate-100 pt-4 flex items-center">
+              <div class="w-10 h-10 bg-slate-200 rounded-full flex-shrink-0 mr-3">
+                  <img src="https://picsum.photos/seed/2/100" class="w-full h-full rounded-full object-cover" alt="Avatar" />
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">James & Riley</h4>
+                <p class="text-slate-400 text-xs">Greenwood</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-sm relative">
+            <div class="absolute -top-4 left-8 bg-brand-yellow text-amber-900 p-2 rounded-lg">
+              <i data-lucide="quote" class="w-5 h-5"></i>
+            </div>
+            <p class="text-slate-600 italic mb-6 pt-4">"I love the small play groups. I know my dog is safe and actually having fun, not just being overwhelmed."</p>
+            <div class="border-t border-slate-100 pt-4 flex items-center">
+              <div class="w-10 h-10 bg-slate-200 rounded-full flex-shrink-0 mr-3">
+                  <img src="https://picsum.photos/seed/3/100" class="w-full h-full rounded-full object-cover" alt="Avatar" />
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Elena K.</h4>
+                <p class="text-slate-400 text-xs">Crown Hill</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-16">
+          
+          <!-- Contact Info -->
+          <div>
+            <h2 class="text-3xl font-extrabold text-slate-900 mb-8">Get In Touch</h2>
+            <p class="text-lg text-slate-600 mb-10">
+              Ready to schedule a visit or have questions about our training programs? Reach out today!
+            </p>
+
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <i data-lucide="map-pin" class="w-6 h-6 text-brand-blue mt-1 flex-shrink-0"></i>
+                <div class="ml-4">
+                  <h3 class="font-medium text-slate-900">Visit Us</h3>
+                  <p class="text-slate-600">6733 15th Ave NW, Seattle, WA 98117</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <i data-lucide="phone" class="w-6 h-6 text-brand-blue mt-1 flex-shrink-0"></i>
+                <div class="ml-4">
+                  <h3 class="font-medium text-slate-900">Call Us</h3>
+                  <a href="tel:(206) 706-4875" class="text-slate-600 hover:text-brand-blue">(206) 706-4875</a>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <i data-lucide="mail" class="w-6 h-6 text-brand-blue mt-1 flex-shrink-0"></i>
+                <div class="ml-4">
+                  <h3 class="font-medium text-slate-900">Email Us</h3>
+                  <a href="mailto:hello@dogsdayoutseattle.com" class="text-slate-600 hover:text-brand-blue">hello@dogsdayoutseattle.com</a>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <i data-lucide="clock" class="w-6 h-6 text-brand-blue mt-1 flex-shrink-0"></i>
+                <div class="ml-4">
+                  <h3 class="font-medium text-slate-900">Hours</h3>
+                  <p class="text-slate-600">Mon–Fri 8:00am–6:00pm</p>
+                  <p class="text-sm text-slate-400 mt-1">Call for weekend availability</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Map Placeholder -->
+            <div class="mt-10 w-full h-64 bg-slate-100 rounded-2xl overflow-hidden relative">
+              <img src="https://picsum.photos/id/10/800/400" alt="Map placeholder" class="w-full h-full object-cover opacity-50 grayscale" />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="bg-white/80 px-4 py-2 rounded-lg font-medium text-slate-600">Map Integration Placeholder</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="mt-12 lg:mt-0 bg-brand-gray p-8 rounded-3xl">
+            <div id="form-success" class="hidden h-full flex-col items-center justify-center text-center py-20">
+              <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="check" class="w-8 h-8"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900">Message Sent!</h3>
+              <p class="text-slate-600 mt-2">We'll get back to you and your pup shortly.</p>
+            </div>
+            
+            <form id="contact-form" class="space-y-6">
+              <div>
+                <label htmlFor="name" class="block text-sm font-medium text-slate-700">Owner Name</label>
+                <input type="text" id="name" required class="mt-1 block w-full rounded-xl border-slate-300 shadow-sm focus:border-brand-blue focus:ring-brand-blue py-3 px-4 border" placeholder="Jane Doe" />
+              </div>
+
+              <div>
+                <label htmlFor="email" class="block text-sm font-medium text-slate-700">Email Address</label>
+                <input type="email" id="email" required class="mt-1 block w-full rounded-xl border-slate-300 shadow-sm focus:border-brand-blue focus:ring-brand-blue py-3 px-4 border" placeholder="jane@example.com" />
+              </div>
+
+              <div>
+                <label htmlFor="phone" class="block text-sm font-medium text-slate-700">Phone Number</label>
+                <input type="tel" id="phone" class="mt-1 block w-full rounded-xl border-slate-300 shadow-sm focus:border-brand-blue focus:ring-brand-blue py-3 px-4 border" placeholder="(206) 555-0123" />
+              </div>
+
+              <div>
+                <label htmlFor="message" class="block text-sm font-medium text-slate-700">Message / Pet Info</label>
+                <textarea id="message" rows="4" required class="mt-1 block w-full rounded-xl border-slate-300 shadow-sm focus:border-brand-blue focus:ring-brand-blue py-3 px-4 border" placeholder="Tell us about your dog (breed, age, needs)..."></textarea>
+              </div>
+
+              <button type="submit" class="w-full flex justify-center py-4 px-4 border border-transparent rounded-xl shadow-sm text-base font-bold text-slate-900 bg-brand-yellow hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-yellow transition-colors">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          
+          <div class="col-span-1 md:col-span-2">
+            <div class="flex items-center gap-2 mb-4 text-white">
+              <div class="bg-brand-blue p-1.5 rounded-lg text-white">
+                <i data-lucide="paw-print" class="w-5 h-5"></i>
+              </div>
+              <span class="text-xl font-bold">Dog's Day Out</span>
+            </div>
+            <p class="text-sm max-w-xs mb-6">
+              Positive, Fear-Free Dog Care & Training — Seattle. Creating a happier world for dogs and the people who love them.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="social-link text-slate-400 hover:text-brand-yellow transition-colors" aria-label="Facebook">
+                <i data-lucide="facebook" class="w-5 h-5"></i>
+              </a>
+              <a href="#" class="social-link text-slate-400 hover:text-brand-yellow transition-colors" aria-label="Instagram">
+                <i data-lucide="instagram" class="w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li><a href="#about" class="nav-link hover:text-brand-blue transition-colors text-sm">About</a></li>
+              <li><a href="#services" class="nav-link hover:text-brand-blue transition-colors text-sm">Services</a></li>
+              <li><a href="#why-us" class="nav-link hover:text-brand-blue transition-colors text-sm">Why Us</a></li>
+              <li><a href="#gallery" class="nav-link hover:text-brand-blue transition-colors text-sm">Gallery</a></li>
+              <li><a href="#contact" class="nav-link hover:text-brand-blue transition-colors text-sm">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-white font-semibold mb-4">Contact</h3>
+            <address class="not-italic text-sm space-y-2">
+              <p>6733 15th Ave NW, Seattle, WA 98117</p>
+              <p>(206) 706-4875</p>
+              <p>hello@dogsdayoutseattle.com</p>
+            </address>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+          <p>&copy; <span id="year">2024</span> Dog's Day Out. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Main Logic Script -->
+    <script src="script.js"></script>
+    
+    <!-- Initialize Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
   </body>
 </html>
